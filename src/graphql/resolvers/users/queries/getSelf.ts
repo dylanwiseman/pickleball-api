@@ -19,14 +19,13 @@ function returnResolver(
         args: {},
         description: 'Get user info for logged-in user',
         resolve: async ({ args, context }: any) => {
-            // const loggedInUser = context.req?.user;
+            const loggedInUser = context.req?.user;
+            console.log('user: ', loggedInUser)
+            if (!loggedInUser) {
+                throw new AuthenticationError('No user');
+            }
 
-            // if (!loggedInUser) {
-            //     throw new AuthenticationError('No user');
-            // }
-
-            const user = {};
-            // const user = await UserModel.findById(loggedInUser._id);
+            const user = await UserModel.findById(loggedInUser._id);
             return user;
         },
     };

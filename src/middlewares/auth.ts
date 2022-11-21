@@ -18,7 +18,7 @@ export async function checkAuth(
         const foundUser = await UserModel.findOne({
             authId: userAuthId,
         }).lean();
-
+        console.log(foundUser);
         if (!foundUser) {
             return res.status(404).json({
                 error: new AuthenticationError(
@@ -27,7 +27,7 @@ export async function checkAuth(
             });
         }
 
-        // req.user = foundUser;
+        req.user = foundUser;
         next();
     } catch (error: any) {
         console.error('access token error: ', error);

@@ -18,9 +18,15 @@ const createGQLSchema = () => {
         }
     ) => {
         TC.addResolver(userResolvers.getSelf(TC));
+        TC.addResolver(userResolvers.registerUser(TC));
+
         const query: { [name: string]: any } = {};
         query.GetSelf = TC.getResolver('GetSelf');
         schemaComposer.Query.addFields(query);
+
+        const mutation: { [name: string]: any } = {};
+        mutation.RegisterUser = TC.getResolver('RegisterUser');
+        schemaComposer.Mutation.addFields(mutation);
     };
     addUserResolvers(UserTC);
     return schemaComposer.buildSchema();

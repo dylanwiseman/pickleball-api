@@ -93,15 +93,13 @@
 
         /* Completeness */
         // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-        "skipLibCheck": true /* Skip type checking all .d.ts files. */,
-        "typeRoots": ["@types", "./node_modules/@types"],
         "module": "commonjs",
         "strict": false,
         "esModuleInterop": true,
         "target": "es6",
         "noImplicitAny": true,
         "moduleResolution": "node",
-        "typeRoots": ["@types", "./node_modules/@types"],
+        "typeRoots": ["src/@types", "./node_modules/@types"],
         "sourceMap": true,
         "skipLibCheck": true,
         "outDir": "dist",
@@ -110,6 +108,6 @@
             "*": ["node_modules/*"]
         }
     },
-    "include": ["**/*"],
-    "exclude": ["public/", "dist/state.json"]
+    "include": ["src/**/*"],
+    "exclude": ["src/public/", "dist/state.json"]
 }

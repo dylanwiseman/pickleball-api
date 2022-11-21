@@ -21,6 +21,8 @@ export type User = {
   firstName?: string;
   lastName?: string;
   _id: mongoose.Types.ObjectId;
+  updatedAt?: Date;
+  createdAt?: Date;
 };
 
 /**
@@ -98,6 +100,8 @@ export type UserDocument = mongoose.Document<
     firstName?: string;
     lastName?: string;
     _id: mongoose.Types.ObjectId;
+    updatedAt?: Date;
+    createdAt?: Date;
   };
 
 /**
