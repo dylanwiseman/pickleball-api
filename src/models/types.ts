@@ -105,6 +105,157 @@ export type UserDocument = mongoose.Document<
   };
 
 /**
+ * Lean version of GameDocument
+ *
+ * This has all Mongoose getters & functions removed. This type will be returned from `GameDocument.toObject()`. To avoid conflicts with model names, use the type alias `GameObject`.
+ * ```
+ * const gameObject = game.toObject();
+ * ```
+ */
+export type Game = {
+  player1: {
+    id?: string;
+    plus?: number;
+    plusPoint?: number;
+    minus?: number;
+    minusPoint?: number;
+  };
+  player2: {
+    id?: string;
+    plus?: number;
+    plusPoint?: number;
+    minus?: number;
+    minusPoint?: number;
+  };
+  player3: {
+    id?: string;
+    plus?: number;
+    plusPoint?: number;
+    minus?: number;
+    minusPoint?: number;
+  };
+  player4: {
+    id?: string;
+    plus?: number;
+    plusPoint?: number;
+    minus?: number;
+    minusPoint?: number;
+  };
+  team1Score?: number;
+  team2Score?: number;
+  win?: boolean;
+  _id: mongoose.Types.ObjectId;
+  updatedAt?: Date;
+  createdAt?: Date;
+};
+
+/**
+ * Lean version of GameDocument (type alias of `Game`)
+ *
+ * Use this type alias to avoid conflicts with model names:
+ * ```
+ * import { Game } from "../models"
+ * import { GameObject } from "../interfaces/mongoose.gen.ts"
+ *
+ * const gameObject: GameObject = game.toObject();
+ * ```
+ */
+export type GameObject = Game;
+
+/**
+ * Mongoose Query type
+ *
+ * This type is returned from query functions. For most use cases, you should not need to use this type explicitly.
+ */
+export type GameQuery = mongoose.Query<any, GameDocument, GameQueries> &
+  GameQueries;
+
+/**
+ * Mongoose Query helper types
+ *
+ * This type represents `GameSchema.query`. For most use cases, you should not need to use this type explicitly.
+ */
+export type GameQueries = {};
+
+export type GameMethods = {};
+
+export type GameStatics = {};
+
+/**
+ * Mongoose Model type
+ *
+ * Pass this type to the Mongoose Model constructor:
+ * ```
+ * const Game = mongoose.model<GameDocument, GameModel>("Game", GameSchema);
+ * ```
+ */
+export type GameModel = mongoose.Model<GameDocument, GameQueries> & GameStatics;
+
+/**
+ * Mongoose Schema type
+ *
+ * Assign this type to new Game schema instances:
+ * ```
+ * const GameSchema: GameSchema = new mongoose.Schema({ ... })
+ * ```
+ */
+export type GameSchema = mongoose.Schema<
+  GameDocument,
+  GameModel,
+  GameMethods,
+  GameQueries
+>;
+
+/**
+ * Mongoose Document type
+ *
+ * Pass this type to the Mongoose Model constructor:
+ * ```
+ * const Game = mongoose.model<GameDocument, GameModel>("Game", GameSchema);
+ * ```
+ */
+export type GameDocument = mongoose.Document<
+  mongoose.Types.ObjectId,
+  GameQueries
+> &
+  GameMethods & {
+    player1: {
+      id?: string;
+      plus?: number;
+      plusPoint?: number;
+      minus?: number;
+      minusPoint?: number;
+    };
+    player2: {
+      id?: string;
+      plus?: number;
+      plusPoint?: number;
+      minus?: number;
+      minusPoint?: number;
+    };
+    player3: {
+      id?: string;
+      plus?: number;
+      plusPoint?: number;
+      minus?: number;
+      minusPoint?: number;
+    };
+    player4: {
+      id?: string;
+      plus?: number;
+      plusPoint?: number;
+      minus?: number;
+      minusPoint?: number;
+    };
+    team1Score?: number;
+    team2Score?: number;
+    win?: boolean;
+    _id: mongoose.Types.ObjectId;
+    updatedAt?: Date;
+    createdAt?: Date;
+  };
+
+/**
  * Check if a property on a document is populated:
  * ```
  * import { IsPopulated } from "../interfaces/mongoose.gen.ts"
