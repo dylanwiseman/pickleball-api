@@ -4,8 +4,7 @@ const UserSchema = new Schema(
   {
     authId: { type: String, require: true },
     email: { type: String, require: true },
-    firstName: String,
-    lastName: String,
+    userName: String,
   },
   { timestamps: true }
 );

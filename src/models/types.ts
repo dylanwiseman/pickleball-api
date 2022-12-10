@@ -18,8 +18,7 @@ import mongoose from "mongoose";
 export type User = {
   authId?: string;
   email?: string;
-  firstName?: string;
-  lastName?: string;
+  userName?: string;
   _id: mongoose.Types.ObjectId;
   updatedAt?: Date;
   createdAt?: Date;
@@ -97,8 +96,7 @@ export type UserDocument = mongoose.Document<
   UserMethods & {
     authId?: string;
     email?: string;
-    firstName?: string;
-    lastName?: string;
+    userName?: string;
     _id: mongoose.Types.ObjectId;
     updatedAt?: Date;
     createdAt?: Date;
