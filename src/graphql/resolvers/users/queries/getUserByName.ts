@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 
 import { GenerateResolverType } from "graphql-compose-mongoose";
 import { ObjectTypeComposer } from "graphql-compose";
-import { ValidationError, AuthenticationError } from "apollo-server-express";
 
 function returnResolver(
   TC: ObjectTypeComposer<mongoose.Document<any, {}>, any> & {
