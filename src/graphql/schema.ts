@@ -4,11 +4,26 @@ import {
   composeMongoose,
   GenerateResolverType,
 } from "graphql-compose-mongoose";
-import { UserModel } from "../models/models";
+import { UserModel, GameModel } from "../models/models";
 import * as userResolvers from "./resolvers/users";
+import * as gameResolvers from "./resolvers/games";
 
 const createGQLSchema = () => {
   const UserTC = composeMongoose(UserModel, {});
+  const GameTC = composeMongoose(GameModel, {});
+
+  const addGameResolvers = (
+    TC: ObjectTypeComposer<mongoose.Document<any, {}>, any> & {
+      mongooseResolvers: GenerateResolverType<mongoose.Document<any, {}>, any>;
+    }
+  ) => {
+    TC.addResolver(gameResolvers.createGame(TC));
+
+    const mutation: { [name: string]: any } = {};
+    mutation.CreateGame = TC.getResolver("CreateGame");
+    schemaComposer.Mutation.addFields(mutation);
+  };
+
   const addUserResolvers = (
     TC: ObjectTypeComposer<mongoose.Document<any, {}>, any> & {
       mongooseResolvers: GenerateResolverType<mongoose.Document<any, {}>, any>;
@@ -27,6 +42,7 @@ const createGQLSchema = () => {
     mutation.RegisterUser = TC.getResolver("RegisterUser");
     schemaComposer.Mutation.addFields(mutation);
   };
+  addGameResolvers(GameTC);
   addUserResolvers(UserTC);
   return schemaComposer.buildSchema();
 };
