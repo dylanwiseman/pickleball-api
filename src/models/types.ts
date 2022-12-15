@@ -19,6 +19,7 @@ export type User = {
   authId?: string;
   email?: string;
   userName?: string;
+  games: string[];
   _id: mongoose.Types.ObjectId;
   updatedAt?: Date;
   createdAt?: Date;
@@ -97,6 +98,7 @@ export type UserDocument = mongoose.Document<
     authId?: string;
     email?: string;
     userName?: string;
+    games: mongoose.Types.Array<string>;
     _id: mongoose.Types.ObjectId;
     updatedAt?: Date;
     createdAt?: Date;

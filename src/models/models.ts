@@ -5,6 +5,7 @@ const UserSchema = new Schema(
     authId: { type: String, require: true },
     email: { type: String, require: true },
     userName: String,
+    games: [String],
   },
   { timestamps: true }
 );
