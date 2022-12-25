@@ -25,7 +25,7 @@ const createGQLSchema = () => {
     schemaComposer.Mutation.addFields(mutation);
 
     const query: { [name: string]: any } = {};
-    query.GetSelf = TC.getResolver("GetGamesByUser");
+    query.GetGamesByUser = TC.getResolver("GetGamesByUser");
     schemaComposer.Query.addFields(query);
   };
 
