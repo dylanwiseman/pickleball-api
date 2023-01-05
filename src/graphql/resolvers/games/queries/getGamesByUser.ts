@@ -11,7 +11,7 @@ function returnResolver(
 ) {
   const resolver = {
     name: "GetGamesByUser",
-    type: TC.mongooseResolvers.findOne(),
+    type: [TC],
     args: { gamesArray: ["String"] },
     description: "Get games by user",
     resolve: async ({ args, context }: any) => {
@@ -22,15 +22,6 @@ function returnResolver(
       });
       console.log("found games: ", games);
       return games;
-
-      //   const games = args.games.map(async (gameId: "String") => {
-      //     const game = await GameModel.findOne({
-      //       _id: gameId,
-      //     });
-      //     console.log("found game: ", game);
-      //     return game;
-      //   });
-      //   return games;
     },
   };
   return resolver;
