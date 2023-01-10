@@ -29,6 +29,7 @@ function returnResolver(
         authId: firebaseUser.uid,
         userName: args.userName,
       };
+      console.log("registering user");
       const user = await UserModel.create(userParams);
 
       return user;
