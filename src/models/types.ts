@@ -20,6 +20,11 @@ export type User = {
   email?: string;
   userName?: string;
   games: string[];
+  stats: {
+    gamesPlayed?: number;
+    avgContribution?: number;
+    totalContribution?: number;
+  };
   _id: mongoose.Types.ObjectId;
   updatedAt?: Date;
   createdAt?: Date;
@@ -99,6 +104,11 @@ export type UserDocument = mongoose.Document<
     email?: string;
     userName?: string;
     games: mongoose.Types.Array<string>;
+    stats: {
+      gamesPlayed?: number;
+      avgContribution?: number;
+      totalContribution?: number;
+    };
     _id: mongoose.Types.ObjectId;
     updatedAt?: Date;
     createdAt?: Date;

@@ -6,6 +6,11 @@ const UserSchema = new Schema(
     email: { type: String, require: true },
     userName: String,
     games: [String],
+    stats: {
+      gamesPlayed: Number,
+      avgContribution: Number,
+      totalContribution: Number,
+    },
   },
   { timestamps: true }
 );
