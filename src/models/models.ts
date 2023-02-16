@@ -1,16 +1,18 @@
 import mongoose, { model, Schema } from "mongoose";
 
+const StatsSchema = new Schema({
+  gamesPlayed: { type: Number, default: 0 },
+  avgContribution: { type: Number, default: 0 },
+  totalContribution: { type: Number, default: 0 },
+});
+
 const UserSchema = new Schema(
   {
     authId: { type: String, require: true },
     email: { type: String, require: true },
     userName: String,
-    games: [String],
-    stats: {
-      gamesPlayed: Number,
-      avgContribution: Number,
-      totalContribution: Number,
-    },
+    games: { type: [String], default: [], require: true },
+    stats: { type: Schema.Types.ObjectId, ref: "Stats" },
   },
   { timestamps: true }
 );
@@ -57,3 +59,6 @@ export const UserModel =
 
 export const GameModel =
   mongoose.models.Game || model("Game", GameSchema, "games");
+
+export const StatsModel =
+  mongoose.models.Stats || model("Stats", StatsSchema, "stats");
