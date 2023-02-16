@@ -10,6 +10,7 @@ function returnResolver(
     mongooseResolvers: GenerateResolverType<mongoose.Document<any, {}>, any>;
   }
 ) {
+  console.log("registering....");
   const resolver = {
     name: "RegisterUser",
     type: TC.mongooseResolvers.findOne(),
@@ -24,6 +25,7 @@ function returnResolver(
       const firebaseUser = await auth.createUser({
         ...args,
       });
+      console.log("fb user: ", firebaseUser);
       const userParams = {
         email: args.email,
         authId: firebaseUser.uid,
