@@ -20,6 +20,9 @@ export type User = {
   email?: string;
   userName?: string;
   games: string[];
+  gamesPlayed?: number;
+  avgContribution?: number;
+  totalContribution?: number;
   stats?: Stats["_id"] | Stats;
   _id: mongoose.Types.ObjectId;
   updatedAt?: Date;
@@ -100,6 +103,9 @@ export type UserDocument = mongoose.Document<
     email?: string;
     userName?: string;
     games: mongoose.Types.Array<string>;
+    gamesPlayed?: number;
+    avgContribution?: number;
+    totalContribution?: number;
     stats?: StatsDocument["_id"] | StatsDocument;
     _id: mongoose.Types.ObjectId;
     updatedAt?: Date;

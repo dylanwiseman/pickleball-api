@@ -14,5 +14,5 @@ interface GameMod extends Omit<Game, "_id"> {
 }
 
 interface StatsMod extends Omit<Stats, "_id"> {
-  _id?: stirng;
+  _id?: string;
 }

@@ -12,6 +12,9 @@ const UserSchema = new Schema(
     email: { type: String, require: true },
     userName: String,
     games: { type: [String], default: [], require: true },
+    gamesPlayed: { type: Number, default: 0 },
+    avgContribution: { type: Number, default: 0 },
+    totalContribution: { type: Number, default: 0 },
     stats: { type: Schema.Types.ObjectId, ref: "Stats" },
   },
   { timestamps: true }
