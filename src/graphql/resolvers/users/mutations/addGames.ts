@@ -1,9 +1,8 @@
 import { UserModel } from "../../../../models";
-
 import mongoose from "mongoose";
+
 import { GenerateResolverType } from "graphql-compose-mongoose";
 import { ObjectTypeComposer } from "graphql-compose";
-import firebaseAdmin from "firebase-admin";
 
 function returnResolver(
   TC: ObjectTypeComposer<mongoose.Document<any, {}>, any> & {
@@ -11,31 +10,21 @@ function returnResolver(
   }
 ) {
   const resolver = {
-    name: "RegisterUser",
+    name: "addGames",
     type: TC.mongooseResolvers.findOne(),
-    args: {
-      userName: "String!",
-      email: "String!",
-      password: "String!",
-    },
-    description: "Registers a new user",
+    args: { _id: "MongoID", game: "MongoID" },
+    description: "add game to user's game array",
     resolve: async ({ args, context }: any) => {
-      const auth = firebaseAdmin.auth();
-      const firebaseUser = await auth.createUser({
-        ...args,
+      const user = await UserModel.findOne({
+        _id: args._id,
       });
-      // console.log("fb user: ", firebaseUser);
-      const userParams = {
-        email: args.email,
-        authId: firebaseUser.uid,
-        userName: args.userName,
-      };
-      const user = await UserModel.create(userParams);
-
+      console.log("found user to update: ", user);
+      user.games.push(args.game);
+      await user.save();
+      console.log("user should be updated", user);
       return user;
     },
   };
-
   return resolver;
 }
 
