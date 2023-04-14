@@ -10,7 +10,7 @@ function returnResolver(
   }
 ) {
   const resolver = {
-    name: "addGames",
+    name: "AddGames",
     type: TC.mongooseResolvers.findOne(),
     args: { _id: "MongoID", game: "MongoID" },
     description: "add game to user's game array",
