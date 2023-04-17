@@ -59,7 +59,25 @@ const createGQLSchema = () => {
       prepareArgs: { _id: (source: any) => source.stats || null },
       projection: { stats: true },
     });
+    UserTC.addRelation("games", {
+      resolver: () => GameTC.mongooseResolvers.connection(),
+      prepareArgs: {
+        filter: (source) => ({
+          _id: { $in: source.games || [] },
+        }),
+      },
+      projection: { games: true },
+    });
+
+  const addGameRelations = () => {
+    GameTC.addRelation("player1.id", {
+      resolver: () => GameTC.mongooseResolvers.findById(),
+      prepareArgs: { _id: (source: any) => source.player1.id || null },
+      projection: { player1: { id: true } },
+    });
   };
+
+  addGameRelations();
   addUserRelations();
 
   return schemaComposer.buildSchema();

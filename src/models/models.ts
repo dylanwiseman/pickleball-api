@@ -15,7 +15,7 @@ const UserSchema = new Schema(
       type: [Schema.Types.ObjectId],
       default: [],
       require: true,
-      ref: "Games",
+      ref: "Game",
     },
     gamesPlayed: { type: Number, default: 0 },
     avgContribution: { type: Number, default: 0 },
@@ -28,28 +28,28 @@ const UserSchema = new Schema(
 const GameSchema = new Schema(
   {
     player1: {
-      id: { type: String, require: true },
+      id: { type: Schema.Types.ObjectId, ref: "User" },
       plus: Number,
       plusPoint: Number,
       minus: Number,
       minusPoint: Number,
     },
     player2: {
-      id: { type: String, require: true },
+      id: { type: Schema.Types.ObjectId, ref: "User" },
       plus: Number,
       plusPoint: Number,
       minus: Number,
       minusPoint: Number,
     },
     player3: {
-      id: { type: String, require: true },
+      id: { type: Schema.Types.ObjectId, ref: "User" },
       plus: Number,
       plusPoint: Number,
       minus: Number,
       minusPoint: Number,
     },
     player4: {
-      id: { type: String, require: true },
+      id: { type: Schema.Types.ObjectId, ref: "User" },
       plus: Number,
       plusPoint: Number,
       minus: Number,
