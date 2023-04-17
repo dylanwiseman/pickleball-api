@@ -69,17 +69,17 @@ const createGQLSchema = () => {
       projection: { games: true },
     });
 
-  const addGameRelations = () => {
-    GameTC.addRelation("player1.id", {
-      resolver: () => GameTC.mongooseResolvers.findById(),
-      prepareArgs: { _id: (source: any) => source.player1.id || null },
-      projection: { player1: { id: true } },
-    });
+    const addGameRelations = () => {
+      GameTC.addRelation("player1.id", {
+        resolver: () => GameTC.mongooseResolvers.findById(),
+        prepareArgs: { _id: (source: any) => source.player1.id || null },
+        projection: { player1: { id: true } },
+      });
+    };
+
+    addGameRelations();
+    addUserRelations();
   };
-
-  addGameRelations();
-  addUserRelations();
-
   return schemaComposer.buildSchema();
 };
 

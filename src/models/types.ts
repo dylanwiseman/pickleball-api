@@ -19,7 +19,7 @@ export type User = {
   authId?: string;
   email?: string;
   userName?: string;
-  games: string[];
+  games: (Game["_id"] | Game)[];
   gamesPlayed?: number;
   avgContribution?: number;
   totalContribution?: number;
@@ -102,7 +102,7 @@ export type UserDocument = mongoose.Document<
     authId?: string;
     email?: string;
     userName?: string;
-    games: mongoose.Types.Array<string>;
+    games: mongoose.Types.Array<GameDocument["_id"] | GameDocument>;
     gamesPlayed?: number;
     avgContribution?: number;
     totalContribution?: number;
@@ -122,28 +122,28 @@ export type UserDocument = mongoose.Document<
  */
 export type Game = {
   player1: {
-    id?: string;
+    id?: User["_id"] | User;
     plus?: number;
     plusPoint?: number;
     minus?: number;
     minusPoint?: number;
   };
   player2: {
-    id?: string;
+    id?: User["_id"] | User;
     plus?: number;
     plusPoint?: number;
     minus?: number;
     minusPoint?: number;
   };
   player3: {
-    id?: string;
+    id?: User["_id"] | User;
     plus?: number;
     plusPoint?: number;
     minus?: number;
     minusPoint?: number;
   };
   player4: {
-    id?: string;
+    id?: User["_id"] | User;
     plus?: number;
     plusPoint?: number;
     minus?: number;
@@ -228,28 +228,28 @@ export type GameDocument = mongoose.Document<
 > &
   GameMethods & {
     player1: {
-      id?: string;
+      id?: UserDocument["_id"] | UserDocument;
       plus?: number;
       plusPoint?: number;
       minus?: number;
       minusPoint?: number;
     };
     player2: {
-      id?: string;
+      id?: UserDocument["_id"] | UserDocument;
       plus?: number;
       plusPoint?: number;
       minus?: number;
       minusPoint?: number;
     };
     player3: {
-      id?: string;
+      id?: UserDocument["_id"] | UserDocument;
       plus?: number;
       plusPoint?: number;
       minus?: number;
       minusPoint?: number;
     };
     player4: {
-      id?: string;
+      id?: UserDocument["_id"] | UserDocument;
       plus?: number;
       plusPoint?: number;
       minus?: number;
