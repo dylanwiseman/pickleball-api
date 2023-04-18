@@ -1,10 +1,6 @@
 import { ObjectTypeComposer, schemaComposer } from "graphql-compose";
 import mongoose from "mongoose";
-import {
-  composeMongoose,
-  GenerateResolverType,
-} from "graphql-compose-mongoose";
-// import { UserModel, GameModel } from "../models/models";
+import { GenerateResolverType } from "graphql-compose-mongoose";
 import * as userResolvers from "./resolvers/users";
 import * as gameResolvers from "./resolvers/games";
 import { UserTC, GameTC } from "./typeComposers";
