@@ -1,8 +1,12 @@
 import { GameModel } from "../../../../models";
+import addGames, {
+  returnResolver as addGamesResolver,
+} from "../../users/mutations/addGames";
 
 import mongoose from "mongoose";
 import { GenerateResolverType } from "graphql-compose-mongoose";
 import { ObjectTypeComposer } from "graphql-compose";
+import { UserTC } from "../../../../graphql/typeComposers";
 
 function returnResolver(
   TC: ObjectTypeComposer<mongoose.Document<any, {}>, any> & {
@@ -72,7 +76,29 @@ function returnResolver(
         team2Score: args.team2Score,
         win: args.win,
       };
+      const addGames = addGamesResolver(UserTC);
       const game = await GameModel.create(gameParams);
+
+      // Call AddGames resolver for each player
+      await Promise.all([
+        addGames.resolve({
+          args: { _id: args.player1_id, game: game._id },
+          context,
+        }),
+        addGames.resolve({
+          args: { _id: args.player2_id, game: game._id },
+          context,
+        }),
+        addGames.resolve({
+          args: { _id: args.player3_id, game: game._id },
+          context,
+        }),
+        addGames.resolve({
+          args: { _id: args.player4_id, game: game._id },
+          context,
+        }),
+      ]);
+
       return game;
     },
   };

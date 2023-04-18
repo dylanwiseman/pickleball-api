@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { GenerateResolverType } from "graphql-compose-mongoose";
 import { ObjectTypeComposer } from "graphql-compose";
 
-function returnResolver(
+export function returnResolver(
   TC: ObjectTypeComposer<mongoose.Document<any, {}>, any> & {
     mongooseResolvers: GenerateResolverType<mongoose.Document<any, {}>, any>;
   }
@@ -25,7 +25,7 @@ function returnResolver(
       return user;
     },
   };
-  return resolver;
+  return { ...resolver, resolve: resolver.resolve }; // add the resolve property to the returned object
 }
 
 export default returnResolver;

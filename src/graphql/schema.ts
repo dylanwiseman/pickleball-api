@@ -7,12 +7,9 @@ import {
 import { UserModel, GameModel, StatsModel } from "../models/models";
 import * as userResolvers from "./resolvers/users";
 import * as gameResolvers from "./resolvers/games";
+import { UserTC, GameTC, StatsTC } from "./typeComposers";
 
 const createGQLSchema = () => {
-  const UserTC = composeMongoose(UserModel, {});
-  const GameTC = composeMongoose(GameModel, {});
-  const StatsTC = composeMongoose(StatsModel, {});
-
   const addGameResolvers = (
     TC: ObjectTypeComposer<mongoose.Document<any, {}>, any> & {
       mongooseResolvers: GenerateResolverType<mongoose.Document<any, {}>, any>;
