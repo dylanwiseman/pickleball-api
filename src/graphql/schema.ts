@@ -4,10 +4,10 @@ import {
   composeMongoose,
   GenerateResolverType,
 } from "graphql-compose-mongoose";
-import { UserModel, GameModel, StatsModel } from "../models/models";
+// import { UserModel, GameModel } from "../models/models";
 import * as userResolvers from "./resolvers/users";
 import * as gameResolvers from "./resolvers/games";
-import { UserTC, GameTC, StatsTC } from "./typeComposers";
+import { UserTC, GameTC } from "./typeComposers";
 
 const createGQLSchema = () => {
   const addGameResolvers = (
@@ -51,11 +51,6 @@ const createGQLSchema = () => {
   addUserResolvers(UserTC);
 
   const addUserRelations = () => {
-    UserTC.addRelation("stats", {
-      resolver: () => StatsTC.mongooseResolvers.findById(),
-      prepareArgs: { _id: (source: any) => source.stats || null },
-      projection: { stats: true },
-    });
     UserTC.addRelation("games", {
       resolver: () => GameTC.mongooseResolvers.connection(),
       prepareArgs: {

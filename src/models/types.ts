@@ -23,7 +23,6 @@ export type User = {
   gamesPlayed?: number;
   avgContribution?: number;
   totalContribution?: number;
-  stats?: Stats["_id"] | Stats;
   _id: mongoose.Types.ObjectId;
   updatedAt?: Date;
   createdAt?: Date;
@@ -106,7 +105,6 @@ export type UserDocument = mongoose.Document<
     gamesPlayed?: number;
     avgContribution?: number;
     totalContribution?: number;
-    stats?: StatsDocument["_id"] | StatsDocument;
     _id: mongoose.Types.ObjectId;
     updatedAt?: Date;
     createdAt?: Date;
@@ -261,98 +259,6 @@ export type GameDocument = mongoose.Document<
     _id: mongoose.Types.ObjectId;
     updatedAt?: Date;
     createdAt?: Date;
-  };
-
-/**
- * Lean version of StatsDocument
- *
- * This has all Mongoose getters & functions removed. This type will be returned from `StatsDocument.toObject()`. To avoid conflicts with model names, use the type alias `StatsObject`.
- * ```
- * const statsObject = stats.toObject();
- * ```
- */
-export type Stats = {
-  gamesPlayed?: number;
-  avgContribution?: number;
-  totalContribution?: number;
-  _id: mongoose.Types.ObjectId;
-};
-
-/**
- * Lean version of StatsDocument (type alias of `Stats`)
- *
- * Use this type alias to avoid conflicts with model names:
- * ```
- * import { Stats } from "../models"
- * import { StatsObject } from "../interfaces/mongoose.gen.ts"
- *
- * const statsObject: StatsObject = stats.toObject();
- * ```
- */
-export type StatsObject = Stats;
-
-/**
- * Mongoose Query type
- *
- * This type is returned from query functions. For most use cases, you should not need to use this type explicitly.
- */
-export type StatsQuery = mongoose.Query<any, StatsDocument, StatsQueries> &
-  StatsQueries;
-
-/**
- * Mongoose Query helper types
- *
- * This type represents `StatsSchema.query`. For most use cases, you should not need to use this type explicitly.
- */
-export type StatsQueries = {};
-
-export type StatsMethods = {};
-
-export type StatsStatics = {};
-
-/**
- * Mongoose Model type
- *
- * Pass this type to the Mongoose Model constructor:
- * ```
- * const Stats = mongoose.model<StatsDocument, StatsModel>("Stats", StatsSchema);
- * ```
- */
-export type StatsModel = mongoose.Model<StatsDocument, StatsQueries> &
-  StatsStatics;
-
-/**
- * Mongoose Schema type
- *
- * Assign this type to new Stats schema instances:
- * ```
- * const StatsSchema: StatsSchema = new mongoose.Schema({ ... })
- * ```
- */
-export type StatsSchema = mongoose.Schema<
-  StatsDocument,
-  StatsModel,
-  StatsMethods,
-  StatsQueries
->;
-
-/**
- * Mongoose Document type
- *
- * Pass this type to the Mongoose Model constructor:
- * ```
- * const Stats = mongoose.model<StatsDocument, StatsModel>("Stats", StatsSchema);
- * ```
- */
-export type StatsDocument = mongoose.Document<
-  mongoose.Types.ObjectId,
-  StatsQueries
-> &
-  StatsMethods & {
-    gamesPlayed?: number;
-    avgContribution?: number;
-    totalContribution?: number;
-    _id: mongoose.Types.ObjectId;
   };
 
 /**
