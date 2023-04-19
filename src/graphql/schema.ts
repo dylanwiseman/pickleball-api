@@ -13,6 +13,7 @@ const createGQLSchema = () => {
   ) => {
     TC.addResolver(gameResolvers.createGame(TC));
     TC.addResolver(gameResolvers.getGamesByUser(TC));
+    TC.addResolver(gameResolvers.getGame(TC));
 
     const mutation: { [name: string]: any } = {};
     mutation.CreateGame = TC.getResolver("CreateGame");
@@ -20,6 +21,7 @@ const createGQLSchema = () => {
 
     const query: { [name: string]: any } = {};
     query.GetGamesByUser = TC.getResolver("GetGamesByUser");
+    query.GetGame = TC.getResolver("GetGame");
     schemaComposer.Query.addFields(query);
   };
 
